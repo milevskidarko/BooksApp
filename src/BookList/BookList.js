@@ -1,17 +1,16 @@
 import React from "react";
 import "./index.scss";
+import { sortProperties } from "../constants";
+import BookListItem from "../BookListItem/BookListItem";
 
 const BookList = ({ books, searchTerm, searchType }) => {
   const filteredBooks = books.filter((book) => {
-    const searchProperty = book[searchType];
-    return (
-      searchProperty &&
-      searchProperty.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const searchProperty = book[sortProperties[searchType]] || "";
+    return searchProperty.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
   return (
-    <ul>
+    <ul className="book-list">
       {filteredBooks.length ? (
         filteredBooks.map((book, index) => {
           const propertyValue = book[searchType];
@@ -27,15 +26,17 @@ const BookList = ({ books, searchTerm, searchType }) => {
             matchIndex + searchTerm.length
           );
           return (
-            <li key={index}>
-              {beforeMatch}
-              <span style={{ fontWeight: "bold", color: "red" }}>{match}</span>
-              {afterMatch} by {book.author} ({book.genre})
-            </li>
+            <BookListItem
+              key={index}
+              book={book}
+              match={match}
+              beforeMatch={beforeMatch}
+              afterMatch={afterMatch}
+            />
           );
         })
       ) : (
-        <p>No results found</p>
+        <p className="no-results">No results found</p>
       )}
     </ul>
   );

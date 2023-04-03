@@ -4,14 +4,14 @@ import BookList from "./BookList/BookList";
 import BookSearchForm from "./BookSearchForm/BookSearchForm";
 import bookData from "./listofbooks.json";
 import { sortBooks, onSearch } from "./helper.js";
-import { sortProperties } from './constants'
+import { sortProperties } from "./constants";
 
 const App = () => {
   const [books, setBooks] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchType, setSearchType] = useState("title");
-  const [sortMethod, setSortMethod] = useState("author");
-
+  const [sortMethod, setSortMethod] = useState("");
+  
   const handleSearchTermChange = (event) => {
     setSearchTerm(event.target.value);
   };

@@ -1,0 +1,36 @@
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: #f7f7f7;
+    }
+
+    &:first-child {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    @media (max-width: 768px) {
+      margin: 5px 0;
+      padding: 8px;
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    margin: 10px 0;
+  }
+}
